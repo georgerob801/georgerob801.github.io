@@ -6,7 +6,7 @@ const UNSET_COL = "#ffffff";
 const STROKE_COL = "#000000";
 
 class ClockSquare {
-    ClockSquare(num) {
+    constructor(num) {
       this.fibonacciNum = num;
       
       this.purpose = Enums.HM.HOURS;
@@ -36,13 +36,13 @@ class ClockSquare {
     render(x, y, scale) {
       let col;
       switch (this.purpose) {
-        case HOURS:
+        case Enums.HM.HOURS:
           col = HOUR_COL;
           break;
-        case MINUTES:
+        case Enums.HM.MINUTES:
           col = MINUTE_COL;
           break;
-        case HOURS_MINUTES:
+        case Enums.HM.HOURS_MINUTES:
           col = HOUR_MINUTE_COL;
           break;
         default:

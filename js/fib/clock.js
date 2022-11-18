@@ -1,6 +1,6 @@
 class Clock {
-    Clock() {
-        this.squares = new ClockSquare[5];
+    constructor() {
+        this.squares = [];
     }
     
     setupSquares() {
@@ -12,11 +12,11 @@ class Clock {
       
       square2.purpose = Enums.HM.MINUTES;
       
-      this.squares[0] = square1_1;
-      this.squares[1] = square1_2;
-      this.squares[2] = square2;
-      this.squares[3] = square3;
-      this.squares[4] = square5;
+      this.squares.push(square1_1);
+      this.squares.push(square1_2);
+      this.squares.push(square2);
+      this.squares.push(square3);
+      this.squares.push(square5);
     }
     
     setSquareCols() {
@@ -25,76 +25,76 @@ class Clock {
       }
       
       // set hour
-      let hour = hour() % 12;
+      let h = hour() % 12;
       
-      if (hour >= 5) {
+      if (h >= 5) {
         this.squares[4].purpose = Enums.HM.HOURS;
-        hour -= 5;
+        h -= 5;
       }
       
-      if (hour >= 3) {
+      if (h >= 3) {
         this.squares[3].purpose = Enums.HM.HOURS;
-        hour -= 3;
+        h -= 3;
       }
       
-      if (hour >= 2) {
+      if (h >= 2) {
         this.squares[2].purpose = Enums.HM.HOURS;
-        hour -= 2;
+        h -= 2;
       }
       
-      if (hour >= 1) {
+      if (h >= 1) {
         this.squares[0].purpose = Enums.HM.HOURS;
-        hour -= 1;
+        h -= 1;
       }
       
-      if (hour >= 1) {
+      if (h >= 1) {
         this.squares[1].purpose = Enums.HM.HOURS;
-        hour -= 1;
+        h -= 1;
       }
       
-      let minute = minute() / 5;
+      let m = minute() / 5;
       
-      if (minute >= 5) {
-        if (squares[4].purpose == Enums.HM.HOURS) this.squares[4].purpose = Enums.HM.HOURS_MINUTES;
+      if (m >= 5) {
+        if (this.squares[4].purpose == Enums.HM.HOURS) this.squares[4].purpose = Enums.HM.HOURS_MINUTES;
         else this.squares[4].purpose = Enums.HM.MINUTES;
-        minute -= 5;
+        m -= 5;
       }
       
-      if (minute >= 3) {
-        if (squares[3].purpose == Enums.HM.HOURS) this.squares[3].purpose = Enums.HM.HOURS_MINUTES;
+      if (m >= 3) {
+        if (this.squares[3].purpose == Enums.HM.HOURS) this.squares[3].purpose = Enums.HM.HOURS_MINUTES;
         else this.squares[3].purpose = Enums.HM.MINUTES;
-        minute -= 3;
+        m -= 3;
       }
       
-      if (minute >= 2) {
-        if (squares[2].purpose == Enums.HM.HOURS) this.squares[2].purpose = Enums.HM.HOURS_MINUTES;
+      if (m >= 2) {
+        if (this.squares[2].purpose == Enums.HM.HOURS) this.squares[2].purpose = Enums.HM.HOURS_MINUTES;
         else this.squares[2].purpose = Enums.HM.MINUTES;
-        minute -= 2;
+        m -= 2;
       }
       
-      if (minute >= 1) {
-        if (squares[0].purpose == Enums.HM.HOURS) this.squares[0].purpose = Enums.HM.HOURS_MINUTES;
+      if (m >= 1) {
+        if (this.squares[0].purpose == Enums.HM.HOURS) this.squares[0].purpose = Enums.HM.HOURS_MINUTES;
         else this.squares[0].purpose = Enums.HM.MINUTES;
-        minute -= 1;
+        m -= 1;
       }
       
-      if (minute >= 1) {
-        if (squares[1].purpose == Enums.HM.HOURS) this.squares[1].purpose = Enums.HM.HOURS_MINUTES;
+      if (m >= 1) {
+        if (this.squares[1].purpose == Enums.HM.HOURS) this.squares[1].purpose = Enums.HM.HOURS_MINUTES;
         else this.squares[1].purpose = Enums.HM.MINUTES;
-        minute -= 1;
+        m -= 1;
       }
     }
     
     render(x, y, scale) {
-      let squarescale = scale * 30;
+      let squareScale = scale * 30;
       stroke(STROKE_COL);
       strokeWeight(2);
       
-      this.squares[0].render(x + this.squares[2].getSize(squareScale), y + this.squares[0].getSize(squareScale), squarescale);
-      this.squares[1].render(x + this.squares[2].getSize(squareScale), y, squarescale);
-      this.squares[2].render(x, y, squarescale);
-      this.squares[3].render(x, y + this.squares[2].getSize(squareScale), squarescale);
-      this.squares[4].render(x + this.squares[3].getSize(squareScale), y, squarescale);
+      this.squares[0].render(x + this.squares[2].getSize(squareScale), y + this.squares[0].getSize(squareScale), squareScale);
+      this.squares[1].render(x + this.squares[2].getSize(squareScale), y, squareScale);
+      this.squares[2].render(x, y, squareScale);
+      this.squares[3].render(x, y + this.squares[2].getSize(squareScale), squareScale);
+      this.squares[4].render(x + this.squares[3].getSize(squareScale), y, squareScale);
     }
   }
   
